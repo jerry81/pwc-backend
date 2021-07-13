@@ -2,7 +2,7 @@
 
 techs used
 
-koa
+express
 
 sequelize
 
