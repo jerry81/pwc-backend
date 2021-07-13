@@ -1,15 +1,31 @@
+import express from "express";
+import { client } from "./db.js";
 
-import express from 'express'
-import {client} from './db.js'
+const app = express();
+const port = 3000;
 
-const app = express()
-const port = 3000
-console.log('client is ', client)
+const pwc = client.db("sample_restaurants");
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+console.log("pwc is ", pwc);
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.get("/restaurants", async (_, res) => {
+  const neigh = pwc.collection("neighborhoods");
+  try {
+    const results = await neigh.find();
+    const returned = []
+    await results.forEach(x => {
+        returned.push(x) 
+    })
+    res.send(returned)
+  } catch (e) {
+    console.error("error while fetching", e);
+  }
+});
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+  console.log(`Example app listening at http://localhost:${port}`);
+});
