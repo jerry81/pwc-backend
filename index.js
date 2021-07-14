@@ -20,9 +20,16 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.post('/ticket', (req, res) => {
+app.post('/ticket', async (req, res) => {
   console.log('Got body:', req.body);
-  res.send(JSON.stringify(req.body))
+  const tc = pwc.collection("tickets");
+  try {
+    const results = await tc.insert(req.body)
+    res.send(results)
+  } catch (e) {
+    console.error("error while fetching", e);
+    res.sendStatus(500)
+  }
   /*  model for ticket
     {
       status,
