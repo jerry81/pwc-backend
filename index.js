@@ -4,11 +4,11 @@ import cors from 'cors'
 
 const app = express();
 app.use(cors())
+app.options('*', cors())
 const port = 3000;
 
 const pwc = client.db("sample_restaurants");
 
-console.log("pwc is ", pwc);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -16,7 +16,6 @@ app.get("/", (req, res) => {
 
 app.get("/restaurants", async (_, res) => {
   const neigh = pwc.collection("neighborhoods");
-  console.log('neigh is ', neigh)
   try {
     const results = await neigh.find();
     const returned = []
@@ -29,6 +28,6 @@ app.get("/restaurants", async (_, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(port, 'http://172.30.179.22', () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
