@@ -14,6 +14,7 @@ app.get("/", (req, res) => {
 
 app.get("/restaurants", async (_, res) => {
   const neigh = pwc.collection("neighborhoods");
+  console.log('neigh is ', neigh)
   try {
     const results = await neigh.find();
     const returned = []
