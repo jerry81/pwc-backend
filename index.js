@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
 
 app.post('/ticket', (req, res) => {
   console.log('Got body:', req.body);
+  res.send(JSON.stringify(req.body))
   /*  model for ticket
     {
       status,
