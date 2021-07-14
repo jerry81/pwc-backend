@@ -11,6 +11,7 @@ const pwc = client.db("sample_restaurants");
 
 
 app.get("/", (req, res) => {
+  console.log('debug statement ')
   res.send("Hello World!");
 });
 
