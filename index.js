@@ -29,6 +29,6 @@ app.get("/restaurants", async (_, res) => {
   }
 });
 
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
