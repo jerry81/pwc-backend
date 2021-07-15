@@ -57,7 +57,7 @@ export default {
       const results = await tc.updateOne(
           {_id},
           {
-              $set: status
+              $set: { ...status }
           }
       );
       res.status = 200
