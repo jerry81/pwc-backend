@@ -60,11 +60,11 @@ export default {
               $set: status
           }
       );
+      res.status = 200
       res.send(results);
     } catch (e) {
       console.error("error while fetching", e);
       res.sendStatus(500);
     }
-    res.sendStatus(200)
   }
 };
