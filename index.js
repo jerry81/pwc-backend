@@ -21,30 +21,10 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.post('/ticket', ticket.create
-/*   console.log('Got body:', req.body);
-  const tc = pwc.collection("tickets");
-  try {
-    const results = await tc.insert(req.body)
-    res.send(results)
-  } catch (e) {
-    console.error("error while fetching", e);
-    res.sendStatus(500)
-  } */
-  /*  model for ticket
-    {
-      status,
-      assignee,
-      subject,
-      dueDate,
-      type: "Wishlist", "Bug",
-      territory: "PwC Mekong", "PwC Shanghai",
-      dm_version,
-      description
-    }
-  */
+app.post('/ticket', ticket.create);
+
+app.get('/tickets', ticket.list);
   
-);
 
 /* app.get("/restaurants", async (_, res) => {
   const neigh = pwc.collection("neighborhoods");
