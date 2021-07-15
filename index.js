@@ -24,6 +24,8 @@ app.get("/", (req, res) => {
 app.post('/ticket', ticket.create);
 
 app.get('/tickets', ticket.list);
+
+app.patch('/ticket/:id', ticket.updateStatus);
   
 
 /* app.get("/restaurants", async (_, res) => {

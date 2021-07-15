@@ -1,4 +1,5 @@
 import { client } from "../db.js";
+import mongo from 'mongodb'
 
 const pwc = client.db("pwc");
 
@@ -42,5 +43,17 @@ export default {
     } catch (e) {
       console.error("error while fetching", e);
     }
+  },
+  /**
+   * PATCH /ticket/{id}?status={DRAFT|SUBMITTED|ASSIGNED|PENDING|COMPLETED} - update status of ticket
+   * 
+   * @param {*} req 
+   * @param {*} res 
+   */
+  async updateStatus(req, res) {
+    const id = req.params.id
+    const status = req.query.status
+    console.log('id is ', id)
+    console.log('status is ', status)
   }
 };
