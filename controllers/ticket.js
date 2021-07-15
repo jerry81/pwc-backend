@@ -8,7 +8,6 @@ const pwc = client.db("pwc");
 export default {
   async create(req, res) {
     const tc = pwc.collection("tickets");
-    console.log("Got body:", req.body);
     try {
       const results = await tc.insert(req.body);
       res.send(results);
@@ -31,7 +30,6 @@ export default {
   },
   async list(req, res) {
     const {query} = req
-    console.log('query', query)
     const tc = pwc.collection("tickets");
     try {
       const results = await tc.find();
@@ -52,9 +50,21 @@ export default {
    */
   async updateStatus(req, res) {
     const id = req.params.id
+    const _id = new mongo.ObjectId(id)
     const status = req.body
-    console.log('id is ', id)
-    console.log('status is ', status)
+    const tc = pwc.collection("tickets");
+    try {
+      const results = await tc.updateOne(
+          {_id},
+          {
+              $set: status
+          }
+      );
+      res.send(results);
+    } catch (e) {
+      console.error("error while fetching", e);
+      res.sendStatus(500);
+    }
     res.sendStatus(200)
   }
 };
