@@ -1,7 +1,8 @@
 import express from "express";
-import { client } from "./db.js";
+// import { client } from "./db.js";
 import cors from 'cors'
 import bodyParser from 'body-parser'
+import ticket from './controllers/ticket.js'
 
 const app = express();
 app.use(cors())
@@ -11,7 +12,7 @@ app.use(bodyParser.json())
 
 const port = 3000;
 
-const pwc = client.db("pwc");
+// const pwc = client.db("pwc");
 
 /* TODO: use router */
 
@@ -20,8 +21,8 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.post('/ticket', async (req, res) => {
-  console.log('Got body:', req.body);
+app.post('/ticket', ticket.create
+/*   console.log('Got body:', req.body);
   const tc = pwc.collection("tickets");
   try {
     const results = await tc.insert(req.body)
@@ -29,7 +30,7 @@ app.post('/ticket', async (req, res) => {
   } catch (e) {
     console.error("error while fetching", e);
     res.sendStatus(500)
-  }
+  } */
   /*  model for ticket
     {
       status,
@@ -43,7 +44,7 @@ app.post('/ticket', async (req, res) => {
     }
   */
   
-});
+);
 
 /* app.get("/restaurants", async (_, res) => {
   const neigh = pwc.collection("neighborhoods");
