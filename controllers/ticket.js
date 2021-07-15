@@ -2,13 +2,12 @@ import { client } from "../db.js";
 
 const pwc = client.db("pwc");
 
-
 /* TODO: TEST */
 
 export default {
   async create(req, res) {
-    console.log("Got body:", req.body);
     const tc = pwc.collection("tickets");
+    console.log("Got body:", req.body);
     try {
       const results = await tc.insert(req.body);
       res.send(results);
@@ -29,8 +28,10 @@ export default {
           }
         */
   },
-  async list(_, res) {
-    const tc = pwc.collection("tickets"); // turn into singleton?
+  async list(req, res) {
+    const {query} = req
+    console.log('query', query)
+    const tc = pwc.collection("tickets");
     try {
       const results = await tc.find();
       const returned = [];
