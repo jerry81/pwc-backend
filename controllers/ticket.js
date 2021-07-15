@@ -52,8 +52,9 @@ export default {
    */
   async updateStatus(req, res) {
     const id = req.params.id
-    const status = req.query.status
+    const status = req.body
     console.log('id is ', id)
     console.log('status is ', status)
+    res.sendStatus(200)
   }
 };
